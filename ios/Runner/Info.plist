@@ -15,7 +15,11 @@
 	<key>CFBundleName</key>
 	<string>hack_hpi</string>
 	<key>CFBundlePackageType</key>
-	<string>APPL</string>
+  <string>APPL</string>
+  <key>NSCameraUsageDescription</key>
+  <string>Camera access required to scan surroundings</string>
+  <key>NSMicrophoneUsageDescription</key>
+  <string>Microphone access required to get surroundings</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
