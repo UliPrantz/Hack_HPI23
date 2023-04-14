@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 
+enum InfoRowType {
+  dropdown,
+  checkbox,
+  widget,
+}
+
 class InfoRow extends StatefulWidget {
   final String label;
-  final bool dropdownMenu;
+  final InfoRowType infoRowType;
   final List<dynamic> values;
+  final Widget? child;
 
   const InfoRow({
     super.key,
     required this.label,
-    required this.dropdownMenu,
+    required this.infoRowType,
     required this.values,
+    this.child,
   });
 
   @override
@@ -22,44 +30,66 @@ class _InfoRowState extends State<InfoRow> {
   @override
   void initState() {
     super.initState();
+
+    if (widget.values.isEmpty) {
+      widget.values.add(false);
+    }
+
     selectedValue = widget.values.first;
   }
-  
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Text(widget.label),
-
-        if (widget.dropdownMenu)
-          DropdownButton(
-            value: widget.values[0],
-            items: widget.values
-                .map((value) => DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    ))
-                .toList(),
-            onChanged: (dynamic newValue) {
-              setState(() {
-                selectedValue = newValue;
-              });
-            },
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(
+            color: Colors.grey,
+            width: 1.0,
           ),
-
-        if (!widget.dropdownMenu)
-          Checkbox(
-            value: widget.values[0],
-            onChanged: (bool? newValue) {
-              if (newValue == null) return;
-
-              setState(() {
-                selectedValue = newValue;
-              });
-            },
+        ),
+      ),
+      height: 70,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            widget.label,
+            style: const TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-      ],
+          if (widget.infoRowType == InfoRowType.dropdown)
+            DropdownButton(
+              value: selectedValue,
+              items: widget.values
+                  .map((value) => DropdownMenuItem(
+                        value: value,
+                        child: Text(value),
+                      ))
+                  .toList(),
+              onChanged: (dynamic newValue) {
+                setState(() {
+                  selectedValue = newValue;
+                });
+              },
+            ),
+          if (widget.infoRowType == InfoRowType.checkbox)
+            Checkbox(
+              value: selectedValue,
+              onChanged: (bool? newValue) {
+                if (newValue == null) return;
+
+                setState(() {
+                  selectedValue = newValue;
+                });
+              },
+            ),
+          if (widget.infoRowType == InfoRowType.widget) widget.child!,
+        ],
+      ),
     );
   }
 }

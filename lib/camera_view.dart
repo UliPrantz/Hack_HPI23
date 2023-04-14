@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 /// CameraApp is the Main Application.
 class CameraView extends StatefulWidget {
@@ -60,38 +61,47 @@ class _CameraViewState extends State<CameraView> {
     }
 
     return MaterialApp(
-      home: Stack(
-        children: [
-          Positioned(
-            child: ElevatedButton(
-              onPressed: buttonPressed,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Show us the trash!'),
+        ),
+        body: Stack(
+          children: [
+            Positioned(
+              bottom: 20,
+              left: MediaQuery.of(context).size.width / 2 - 50,
+              child: ElevatedButton(
+                onPressed: () => buttonPressed(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-              ),
-              child: const Text(
-                'Scanned',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
+                child: const Text(
+                  'Scanned',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ),
-          ),
-          CameraPreview(controller),
-        ],
+            Center(child: CameraPreview(controller)),
+          ],
+        ),
       ),
     );
   }
 
-  Future<void> buttonPressed() async {
-    try {
-      await controller.takePicture();
-    } on CameraException catch (e) {
-      print(e);
-    }
+  Future<void> buttonPressed(BuildContext context) async {
+    // try {
+    //   await controller.takePicture();
+    // } on CameraException catch (e) {
+    //   print(e);
+    // }
+
+    context.push(Uri(path: '/confirmation').toString());
   }
 
   @override
