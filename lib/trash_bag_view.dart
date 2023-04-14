@@ -35,7 +35,6 @@ class _TrashBagViewState extends State<TrashBagView> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          
           children: [
             Text(
               "Throw the trash",
@@ -52,9 +51,39 @@ class _TrashBagViewState extends State<TrashBagView> {
               fit: BoxFit.contain,
             ),
             Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 30.0
+              decoration: BoxDecoration(
+                color: purple,
+                borderRadius: BorderRadius.circular(10.0),
               ),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 15.0,
+              ),
+              child: RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Get 40 points to win 10% discount at ',
+                      style: TextStyle(
+                        fontSize: 21.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'XYZ Restaurant',
+                      style: TextStyle(
+                        fontSize: 21.0,
+                        color: orange,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: ElevatedButton(
                 onPressed: () => buttonPressed(context),
                 style: ElevatedButton.styleFrom(
@@ -85,6 +114,6 @@ class _TrashBagViewState extends State<TrashBagView> {
   }
 
   Future<void> buttonPressed(BuildContext context) async {
-    context.push(Uri(path: '/').toString());
+    context.push(Uri(path: '/game').toString());
   }
 }

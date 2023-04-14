@@ -4,6 +4,7 @@ import 'package:hack_hpi/camera_view.dart';
 import 'package:hack_hpi/confirmation_view.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:hack_hpi/game.dart';
 import 'package:hack_hpi/trash_bag_view.dart';
 import 'package:touch_indicator/touch_indicator.dart';
 
@@ -44,6 +45,10 @@ final goRouter = GoRouter(
     GoRoute(
       path: '/confirmation',
       builder: (context, state) => const ConfirmationView(),
+    ),
+    GoRoute(
+      path: '/game',
+      builder: (context, state) => const GameView(),
     ),
   ],
 );
