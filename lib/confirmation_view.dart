@@ -4,6 +4,7 @@ import 'package:hack_hpi/info_row.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:hack_hpi/location_widget.dart';
+import 'package:hack_hpi/util.dart';
 class ConfirmationView extends StatefulWidget {
   const ConfirmationView({super.key});
 
@@ -16,6 +17,7 @@ class _ConfirmationViewState extends State<ConfirmationView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: purple,
         title: const Text('Confirmation'),
       ),
       body: Column(
@@ -53,7 +55,7 @@ class _ConfirmationViewState extends State<ConfirmationView> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(10.0),
               child: Image.asset(
-                'assets/garbage.jpg',
+                'assets/garbage.png',
                 fit: BoxFit.cover,
               ),
             ),
@@ -67,7 +69,7 @@ class _ConfirmationViewState extends State<ConfirmationView> {
             child: ElevatedButton(
               onPressed: () => buttonPressed(context),
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: orange,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),

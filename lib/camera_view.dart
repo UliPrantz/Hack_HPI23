@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hack_hpi/util.dart';
 
 /// CameraApp is the Main Application.
 class CameraView extends StatefulWidget {
@@ -27,7 +28,7 @@ class _CameraViewState extends State<CameraView> {
   Future<void> setupCamera() async {
     _cameras = await availableCameras();
 
-    controller = CameraController(_cameras[0], ResolutionPreset.medium);
+    controller = CameraController(_cameras[2], ResolutionPreset.medium);
 
     controller.initialize().then((_) {
       if (!mounted) {
@@ -63,17 +64,20 @@ class _CameraViewState extends State<CameraView> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: purple,
           title: const Text('Show us the trash!'),
         ),
         body: Stack(
+          fit: StackFit.expand,
           children: [
+            CameraPreview(controller),
             Positioned(
               bottom: 20,
               left: MediaQuery.of(context).size.width / 2 - 50,
               child: ElevatedButton(
                 onPressed: () => buttonPressed(context),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: orange,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -87,7 +91,6 @@ class _CameraViewState extends State<CameraView> {
                 ),
               ),
             ),
-            Center(child: CameraPreview(controller)),
           ],
         ),
       ),

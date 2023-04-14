@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hack_hpi/util.dart';
 
 enum WidgetState {
   init,
@@ -23,7 +24,7 @@ class _LocationWidgetState extends State<LocationWidget> {
         return ElevatedButton(
           onPressed: buttonPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.blue,
+            backgroundColor: orange,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -47,7 +48,7 @@ class _LocationWidgetState extends State<LocationWidget> {
         return Container(
           padding: EdgeInsets.all(5.0),
           child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: AlwaysStoppedAnimation<Color>(orange),
           ),
         );
 

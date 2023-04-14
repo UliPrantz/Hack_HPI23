@@ -5,6 +5,7 @@ import 'package:hack_hpi/confirmation_view.dart';
 
 import 'package:go_router/go_router.dart';
 import 'package:hack_hpi/trash_bag_view.dart';
+import 'package:touch_indicator/touch_indicator.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       routerConfig: goRouter,
+      builder: (context, child) => TouchIndicator(child: child!),
     );
   }
 }

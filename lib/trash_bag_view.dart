@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
+import 'package:hack_hpi/util.dart';
 
 class TrashBagView extends StatefulWidget {
   const TrashBagView({super.key});
@@ -14,6 +15,7 @@ class _TrashBagViewState extends State<TrashBagView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: purple,
         leading: IconButton(
           icon: const Icon(Icons.list_rounded),
           onPressed: () {},
@@ -32,42 +34,46 @@ class _TrashBagViewState extends State<TrashBagView> {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          
           children: [
             Text(
               "Throw the trash",
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            Placeholder(
-              fallbackHeight: 400.0,
-              fallbackWidth: 400.0,
+            Image.asset(
+              'assets/trash_bag.gif',
+              width: 200.0,
+              height: 200.0,
+              fit: BoxFit.contain,
             ),
-            // child: Image.asset(
-            //   'assets/trash_bag.gif',
-            //   width: 200.0,
-            //   height: 200.0,
-            //   fit: BoxFit.contain,
-            // ),
-            ElevatedButton(
-              onPressed: () => buttonPressed(context),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 30.0
               ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 40.0,
-                  vertical: 10.0,
+              child: ElevatedButton(
+                onPressed: () => buttonPressed(context),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: orange,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
-                child: const Text(
-                  'Let\'s play',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40.0,
+                    vertical: 10.0,
+                  ),
+                  child: const Text(
+                    'Let\'s play',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),

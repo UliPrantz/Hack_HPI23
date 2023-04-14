@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hack_hpi/util.dart';
 
 enum InfoRowType {
   dropdown,
@@ -79,6 +80,7 @@ class _InfoRowState extends State<InfoRow> {
           if (widget.infoRowType == InfoRowType.checkbox)
             Checkbox(
               value: selectedValue,
+              fillColor: MaterialStateProperty.all(orange),
               onChanged: (bool? newValue) {
                 if (newValue == null) return;
 
